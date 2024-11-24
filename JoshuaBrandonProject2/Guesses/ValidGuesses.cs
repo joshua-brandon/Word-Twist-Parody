@@ -14,5 +14,10 @@ namespace JoshuaBrandonProject2.Guesses
         {
             Points = points;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " Points: " + Points; 
+        }
     }
 }

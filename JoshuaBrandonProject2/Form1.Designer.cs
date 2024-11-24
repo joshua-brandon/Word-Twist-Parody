@@ -30,6 +30,7 @@
         {
             playGameButton = new Button();
             timeSelectComboBox = new ComboBox();
+            nameTextBox = new TextBox();
             SuspendLayout();
             // 
             // playGameButton
@@ -53,21 +54,32 @@
             timeSelectComboBox.Text = "Select Time in Seconds (Default 120)";
             timeSelectComboBox.SelectedIndexChanged += timeSelectComboBox_SelectedIndexChanged;
             // 
+            // nameTextBox
+            // 
+            nameTextBox.Location = new Point(269, 223);
+            nameTextBox.Name = "nameTextBox";
+            nameTextBox.Size = new Size(241, 27);
+            nameTextBox.TabIndex = 2;
+            nameTextBox.Text = "Enter Name";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(nameTextBox);
             Controls.Add(timeSelectComboBox);
             Controls.Add(playGameButton);
             Name = "Form1";
             Text = "Text Twist By Brandon";
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private Button playGameButton;
         private ComboBox timeSelectComboBox;
+        private TextBox nameTextBox;
     }
 }

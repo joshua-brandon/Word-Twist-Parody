@@ -14,5 +14,10 @@ namespace JoshuaBrandonProject2.Guesses
         {
             IncorrectReason = incorrectReason;
         }
+
+        public override string ToString()
+        {
+            return base.ToString() + " Reason Incorrect: " + IncorrectReason ;
+        }
     }
 }

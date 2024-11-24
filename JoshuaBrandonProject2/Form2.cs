@@ -1,8 +1,10 @@
 ﻿using JoshuaBrandonProject2.Random_Letters;
 using System.Text.Json;
 using JoshuaBrandonProject2.Guesses;
+using JoshuaBrandonProject2.Previous_Rounds;
 using JoshuaBrandonProject2.ReadDictionary;
 using Timer = System.Windows.Forms.Timer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace JoshuaBrandonProject2
 {
@@ -10,16 +12,18 @@ namespace JoshuaBrandonProject2
     {
         public List<char> wordGuess = new();
         public List<string> guessedWords = new();
-        public List<Guesses.ValidGuesses> AllValidGuessesList = new List<ValidGuesses>();
+        public static List<Guesses.ValidGuesses> AllValidGuessesList = new List<ValidGuesses>();
         public List<Guesses.InvalidGuesses> AllInvalidGuessesList = new List<InvalidGuesses>();
-        public List<Guesses.Guesses> AllGuessesList = new List<Guesses.Guesses>();
+        public static List<Guesses.Guesses> AllGuessesList = new List<Guesses.Guesses>();
+        public static List<Round> RoundList = new List<Round>();
         public RandomLetters randomLetters = new RandomLetters();
         public string submitedGuess = "";
         public string lettersChosen = "";
         public int points = 0;
-        public int pointTotal = 0;
+        public static int pointTotal = 0;
         private readonly Timer AppTimer;
         private int CurrentTime;
+        private static Random rng = new Random();
         public Form2()
         {
             InitializeComponent();
@@ -55,6 +59,13 @@ namespace JoshuaBrandonProject2
                 button5.Enabled = false;
                 button6.Enabled = false;
                 button7.Enabled = false;
+                Round round = new Round(RoundList.Count + 1, AllGuessesList);
+                RoundList.Add(round);
+                Form3 f3 = new Form3();
+                f3.ShowDialog();
+                AllGuessesList.Clear();
+                AllInvalidGuessesList.Clear();
+                AllValidGuessesList.Clear();
             }
         }
 
@@ -124,10 +135,10 @@ namespace JoshuaBrandonProject2
             List<DictionaryReader>? wordsList = new List<DictionaryReader>();
             StreamReader r = new StreamReader(@"C:\Users\joshu\Downloads\JoshuaBrandonProject2\JoshuaBrandonProject2\Data\dictionary.json");
             string json = r.ReadToEnd();
-            wordsList = JsonSerializer.Deserialize <List<DictionaryReader>>(json);
+            wordsList = JsonSerializer.Deserialize<List<DictionaryReader>>(json);
             bool valid = false;
             bool repeated = false;
-            
+
             if (submitedGuess.Length < 3)
             {
                 messageLabel.Text = "Guess must be longer than 3 letters";
@@ -160,7 +171,7 @@ namespace JoshuaBrandonProject2
                                 valid = true;
                             }
                         }
-                        
+
                     }
 
                     if (valid == true)
@@ -308,10 +319,10 @@ namespace JoshuaBrandonProject2
                             wordGuess.Clear();
                             label1.Text = "";
                         }
-                        
-                        
+
+
                     }
-                    if(valid == false)
+                    if (valid == false)
                     {
                         messageLabel.Text = "Word Not In Dictionary";
                         button1.Enabled = true;
@@ -330,11 +341,28 @@ namespace JoshuaBrandonProject2
                         label1.Text = "";
                     }
                 }
-                
-                
+
+
             }
-            
-            
+
+
+        }
+
+        private void twistButton_Click(object sender, EventArgs e)
+        {
+            var shuffledcards = randomLetters.Drawn.OrderBy(_ => rng.Next()).ToList();
+            randomLetters.Drawn.Clear();
+            foreach (var letter in shuffledcards)
+            {
+                randomLetters.Drawn.Add(letter);
+            }
+            button1.Text = randomLetters.Drawn[0].ToString();
+            button2.Text = randomLetters.Drawn[1].ToString();
+            button3.Text = randomLetters.Drawn[2].ToString();
+            button4.Text = randomLetters.Drawn[3].ToString();
+            button5.Text = randomLetters.Drawn[4].ToString();
+            button6.Text = randomLetters.Drawn[5].ToString();
+            button7.Text = randomLetters.Drawn[6].ToString();
         }
     }
 }

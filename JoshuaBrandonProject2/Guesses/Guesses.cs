@@ -16,5 +16,12 @@ namespace JoshuaBrandonProject2.Guesses
             WordEntered = wordEntered;
             TimeEntered = timeEntered;
         }
+
+        public override string ToString()
+        {
+            return ("Word: " + WordEntered + ", Time: " + TimeEntered);
+        }
     }
+
+
 }

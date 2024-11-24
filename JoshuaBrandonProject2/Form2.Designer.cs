@@ -40,6 +40,7 @@
             messageLabel = new Label();
             timeRemainingLabel = new Label();
             totalPointsLabel = new Label();
+            twistButton = new Button();
             SuspendLayout();
             // 
             // button1
@@ -114,9 +115,9 @@
             // 
             // enterButton
             // 
-            enterButton.Location = new Point(453, 450);
+            enterButton.Location = new Point(229, 438);
             enterButton.Name = "enterButton";
-            enterButton.Size = new Size(250, 52);
+            enterButton.Size = new Size(294, 52);
             enterButton.TabIndex = 7;
             enterButton.Text = "Enter";
             enterButton.UseVisualStyleBackColor = true;
@@ -156,11 +157,22 @@
             totalPointsLabel.TabIndex = 11;
             totalPointsLabel.Text = "Total Points:";
             // 
+            // twistButton
+            // 
+            twistButton.Location = new Point(629, 438);
+            twistButton.Name = "twistButton";
+            twistButton.Size = new Size(294, 52);
+            twistButton.TabIndex = 12;
+            twistButton.Text = "Twist";
+            twistButton.UseVisualStyleBackColor = true;
+            twistButton.Click += twistButton_Click;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1175, 607);
+            Controls.Add(twistButton);
             Controls.Add(totalPointsLabel);
             Controls.Add(timeRemainingLabel);
             Controls.Add(messageLabel);
@@ -174,7 +186,7 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Name = "Form2";
-            Text = "Form2";
+            Text = "Text Twist By Brandon";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -193,5 +205,6 @@
         private Label messageLabel;
         private Label timeRemainingLabel;
         private Label totalPointsLabel;
+        private Button twistButton;
     }
 }
