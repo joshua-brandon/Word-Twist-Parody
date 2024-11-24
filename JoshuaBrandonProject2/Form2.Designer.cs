@@ -39,6 +39,7 @@
             label1 = new Label();
             messageLabel = new Label();
             timeRemainingLabel = new Label();
+            totalPointsLabel = new Label();
             SuspendLayout();
             // 
             // button1
@@ -146,11 +147,21 @@
             timeRemainingLabel.Size = new Size(0, 20);
             timeRemainingLabel.TabIndex = 10;
             // 
+            // totalPointsLabel
+            // 
+            totalPointsLabel.AutoSize = true;
+            totalPointsLabel.Location = new Point(492, 319);
+            totalPointsLabel.Name = "totalPointsLabel";
+            totalPointsLabel.Size = new Size(88, 20);
+            totalPointsLabel.TabIndex = 11;
+            totalPointsLabel.Text = "Total Points:";
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1175, 607);
+            Controls.Add(totalPointsLabel);
             Controls.Add(timeRemainingLabel);
             Controls.Add(messageLabel);
             Controls.Add(label1);
@@ -181,5 +192,6 @@
         private Label label1;
         private Label messageLabel;
         private Label timeRemainingLabel;
+        private Label totalPointsLabel;
     }
 }

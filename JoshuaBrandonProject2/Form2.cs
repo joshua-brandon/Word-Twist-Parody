@@ -17,10 +17,12 @@ namespace JoshuaBrandonProject2
     public partial class Form2 : Form
     {
         public List<char> wordGuess = new();
+        public List<string> guessedWords = new();
         public RandomLetters randomLetters = new RandomLetters();
         public string submitedGuess = "";
         public string lettersChosen = "";
         public int points = 0;
+        public int pointTotal = 0;
         private readonly Timer AppTimer;
         private int? CurrentTime;
         public Form2()
@@ -36,7 +38,8 @@ namespace JoshuaBrandonProject2
             button7.Text = randomLetters.Drawn[6].ToString();
             CurrentTime = (int)Form1.comboboxSelected;
             timeRemainingLabel.Text = CurrentTime.ToString();
-
+            pointTotal = 0;
+            totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
             AppTimer = new Timer();
             AppTimer.Interval = 1000;
             AppTimer.Tick += TimerOnTick;
@@ -128,6 +131,7 @@ namespace JoshuaBrandonProject2
             string json = r.ReadToEnd();
             wordsList = JsonSerializer.Deserialize <List<DictionaryReader>>(json);
             bool valid = false;
+            bool repeated = false;
             
             if (submitedGuess.Length < 3)
             {
@@ -142,6 +146,7 @@ namespace JoshuaBrandonProject2
                 lettersChosen = "";
                 submitedGuess = "";
                 wordGuess.Clear();
+                label1.Text = "";
             }
             else
             {
@@ -162,42 +167,133 @@ namespace JoshuaBrandonProject2
 
                     if (valid == true)
                     {
-                        if (submitedGuess.Length == 3)
+                        foreach (var word in guessedWords)
                         {
-                            points = 90;
+                            if (submitedGuess == word)
+                            {
+                                repeated = true;
+                            }
                         }
 
-                        if (submitedGuess.Length == 4)
+                        if (repeated == false)
                         {
-                            points = 160;
-                        }
+                            if (submitedGuess.Length == 3)
+                            {
+                                points = 90;
+                                messageLabel.Text = "Guess submitted for 90 points";
+                                button1.Enabled = true;
+                                button2.Enabled = true;
+                                button3.Enabled = true;
+                                button4.Enabled = true;
+                                button5.Enabled = true;
+                                button6.Enabled = true;
+                                button7.Enabled = true;
+                                pointTotal = pointTotal + points;
+                                totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
+                                guessedWords.Add(submitedGuess);
+                                lettersChosen = "";
+                                submitedGuess = "";
+                                wordGuess.Clear();
+                                label1.Text = "";
+                            }
 
-                        if (submitedGuess.Length == 5)
+                            if (submitedGuess.Length == 4)
+                            {
+                                points = 160;
+                                messageLabel.Text = "Guess submitted for 160 points";
+                                button1.Enabled = true;
+                                button2.Enabled = true;
+                                button3.Enabled = true;
+                                button4.Enabled = true;
+                                button5.Enabled = true;
+                                button6.Enabled = true;
+                                button7.Enabled = true;
+                                pointTotal += points;
+                                totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
+                                guessedWords.Add(submitedGuess);
+                                lettersChosen = "";
+                                submitedGuess = "";
+                                wordGuess.Clear();
+                                label1.Text = "";
+                            }
+
+                            if (submitedGuess.Length == 5)
+                            {
+                                points = 250;
+                                messageLabel.Text = "Guess submitted for 250 points";
+                                button1.Enabled = true;
+                                button2.Enabled = true;
+                                button3.Enabled = true;
+                                button4.Enabled = true;
+                                button5.Enabled = true;
+                                button6.Enabled = true;
+                                button7.Enabled = true;
+                                pointTotal = pointTotal + points;
+                                totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
+                                guessedWords.Add(submitedGuess);
+                                lettersChosen = "";
+                                submitedGuess = "";
+                                wordGuess.Clear();
+                                label1.Text = "";
+                            }
+
+                            if (submitedGuess.Length == 6)
+                            {
+                                points = 360;
+                                messageLabel.Text = "Guess submitted for 360 points";
+                                button1.Enabled = true;
+                                button2.Enabled = true;
+                                button3.Enabled = true;
+                                button4.Enabled = true;
+                                button5.Enabled = true;
+                                button6.Enabled = true;
+                                button7.Enabled = true;
+                                pointTotal += points;
+                                totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
+                                guessedWords.Add(submitedGuess);
+                                lettersChosen = "";
+                                submitedGuess = "";
+                                wordGuess.Clear();
+                                label1.Text = "";
+                            }
+
+                            if (submitedGuess.Length == 7)
+                            {
+                                points = 490;
+                                messageLabel.Text = "Guess submitted for 490 points";
+                                button1.Enabled = true;
+                                button2.Enabled = true;
+                                button3.Enabled = true;
+                                button4.Enabled = true;
+                                button5.Enabled = true;
+                                button6.Enabled = true;
+                                button7.Enabled = true;
+                                pointTotal += points;
+                                totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
+                                guessedWords.Add(submitedGuess);
+                                lettersChosen = "";
+                                submitedGuess = "";
+                                wordGuess.Clear();
+                                label1.Text = "";
+                            }
+                        }
+                        if (repeated == true)
                         {
-                            points = 250;
+                            messageLabel.Text = "Guess already submitted";
+                            button1.Enabled = true;
+                            button2.Enabled = true;
+                            button3.Enabled = true;
+                            button4.Enabled = true;
+                            button5.Enabled = true;
+                            button6.Enabled = true;
+                            button7.Enabled = true;
+                            lettersChosen = "";
+                            submitedGuess = "";
+                            wordGuess.Clear();
+                            label1.Text = "";
                         }
-
-                        if (submitedGuess.Length == 6)
-                        {
-                            points = 360;
-                        }
-
-                        if (submitedGuess.Length == 7)
-                        {
-                            points = 490;
-                        }
-                        messageLabel.Text = "Guess submitted";
-                        button1.Enabled = true;
-                        button2.Enabled = true;
-                        button3.Enabled = true;
-                        button4.Enabled = true;
-                        button5.Enabled = true;
-                        button6.Enabled = true;
-                        button7.Enabled = true;
-
-                        lettersChosen = "";
-                        submitedGuess = "";
-                        wordGuess.Clear();
+                        
+                        
                     }
                     if(valid == false)
                     {
@@ -213,6 +309,7 @@ namespace JoshuaBrandonProject2
                         lettersChosen = "";
                         submitedGuess = "";
                         wordGuess.Clear();
+                        label1.Text = "";
                     }
                 }
                 
