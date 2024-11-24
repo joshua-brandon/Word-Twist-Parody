@@ -45,12 +45,12 @@
             // timeSelectComboBox
             // 
             timeSelectComboBox.FormattingEnabled = true;
-            timeSelectComboBox.Items.AddRange(new object[] { "120", "60", "180" });
-            timeSelectComboBox.Location = new Point(295, 135);
+            timeSelectComboBox.Items.AddRange(new object[] { "60", "120", "180" });
+            timeSelectComboBox.Location = new Point(255, 153);
             timeSelectComboBox.Name = "timeSelectComboBox";
-            timeSelectComboBox.Size = new Size(184, 28);
+            timeSelectComboBox.Size = new Size(271, 28);
             timeSelectComboBox.TabIndex = 1;
-            timeSelectComboBox.Text = "Select Time in Seconds";
+            timeSelectComboBox.Text = "Select Time in Seconds (Default 120)";
             timeSelectComboBox.SelectedIndexChanged += timeSelectComboBox_SelectedIndexChanged;
             // 
             // Form1

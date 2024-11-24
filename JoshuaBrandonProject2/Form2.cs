@@ -1,14 +1,6 @@
 ﻿using JoshuaBrandonProject2.Random_Letters;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using JoshuaBrandonProject2.Guesses;
 using JoshuaBrandonProject2.ReadDictionary;
 using Timer = System.Windows.Forms.Timer;
 
@@ -18,13 +10,16 @@ namespace JoshuaBrandonProject2
     {
         public List<char> wordGuess = new();
         public List<string> guessedWords = new();
+        public List<Guesses.ValidGuesses> AllValidGuessesList = new List<ValidGuesses>();
+        public List<Guesses.InvalidGuesses> AllInvalidGuessesList = new List<InvalidGuesses>();
+        public List<Guesses.Guesses> AllGuessesList = new List<Guesses.Guesses>();
         public RandomLetters randomLetters = new RandomLetters();
         public string submitedGuess = "";
         public string lettersChosen = "";
         public int points = 0;
         public int pointTotal = 0;
         private readonly Timer AppTimer;
-        private int? CurrentTime;
+        private int CurrentTime;
         public Form2()
         {
             InitializeComponent();
@@ -39,7 +34,7 @@ namespace JoshuaBrandonProject2
             CurrentTime = (int)Form1.comboboxSelected;
             timeRemainingLabel.Text = CurrentTime.ToString();
             pointTotal = 0;
-            totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
+            totalPointsLabel.Text = "Total Points: " + pointTotal;
             AppTimer = new Timer();
             AppTimer.Interval = 1000;
             AppTimer.Tick += TimerOnTick;
@@ -143,6 +138,9 @@ namespace JoshuaBrandonProject2
                 button5.Enabled = true;
                 button6.Enabled = true;
                 button7.Enabled = true;
+                InvalidGuesses invalidGuess = new Guesses.InvalidGuesses(submitedGuess, CurrentTime, "Guess wasn't long enough");
+                AllInvalidGuessesList.Add(invalidGuess);
+                AllGuessesList.Add(invalidGuess);
                 lettersChosen = "";
                 submitedGuess = "";
                 wordGuess.Clear();
@@ -191,6 +189,9 @@ namespace JoshuaBrandonProject2
                                 pointTotal = pointTotal + points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
+                                ValidGuesses validGuess = new ValidGuesses(submitedGuess, CurrentTime, points);
+                                AllValidGuessesList.Add(validGuess);
+                                AllGuessesList.Add(validGuess);
                                 lettersChosen = "";
                                 submitedGuess = "";
                                 wordGuess.Clear();
@@ -211,6 +212,9 @@ namespace JoshuaBrandonProject2
                                 pointTotal += points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
+                                ValidGuesses validGuess = new ValidGuesses(submitedGuess, CurrentTime, points);
+                                AllValidGuessesList.Add(validGuess);
+                                AllGuessesList.Add(validGuess);
                                 lettersChosen = "";
                                 submitedGuess = "";
                                 wordGuess.Clear();
@@ -231,6 +235,9 @@ namespace JoshuaBrandonProject2
                                 pointTotal = pointTotal + points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
+                                ValidGuesses validGuess = new ValidGuesses(submitedGuess, CurrentTime, points);
+                                AllValidGuessesList.Add(validGuess);
+                                AllGuessesList.Add(validGuess);
                                 lettersChosen = "";
                                 submitedGuess = "";
                                 wordGuess.Clear();
@@ -251,6 +258,9 @@ namespace JoshuaBrandonProject2
                                 pointTotal += points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
+                                ValidGuesses validGuess = new ValidGuesses(submitedGuess, CurrentTime, points);
+                                AllValidGuessesList.Add(validGuess);
+                                AllGuessesList.Add(validGuess);
                                 lettersChosen = "";
                                 submitedGuess = "";
                                 wordGuess.Clear();
@@ -271,6 +281,9 @@ namespace JoshuaBrandonProject2
                                 pointTotal += points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
+                                ValidGuesses validGuess = new ValidGuesses(submitedGuess, CurrentTime, points);
+                                AllValidGuessesList.Add(validGuess);
+                                AllGuessesList.Add(validGuess);
                                 lettersChosen = "";
                                 submitedGuess = "";
                                 wordGuess.Clear();
@@ -287,6 +300,9 @@ namespace JoshuaBrandonProject2
                             button5.Enabled = true;
                             button6.Enabled = true;
                             button7.Enabled = true;
+                            InvalidGuesses invalidGuess = new Guesses.InvalidGuesses(submitedGuess, CurrentTime, "Word was already submitted");
+                            AllInvalidGuessesList.Add(invalidGuess);
+                            AllGuessesList.Add(invalidGuess);
                             lettersChosen = "";
                             submitedGuess = "";
                             wordGuess.Clear();
@@ -305,7 +321,9 @@ namespace JoshuaBrandonProject2
                         button5.Enabled = true;
                         button6.Enabled = true;
                         button7.Enabled = true;
-
+                        InvalidGuesses invalidGuess = new Guesses.InvalidGuesses(submitedGuess, CurrentTime, "Word wasn't in dictionary");
+                        AllInvalidGuessesList.Add(invalidGuess);
+                        AllGuessesList.Add(invalidGuess);
                         lettersChosen = "";
                         submitedGuess = "";
                         wordGuess.Clear();

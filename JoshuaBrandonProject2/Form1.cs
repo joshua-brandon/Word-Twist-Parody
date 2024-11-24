@@ -4,7 +4,7 @@ namespace JoshuaBrandonProject2
 {
     public partial class Form1 : Form
     {
-        public static int? comboboxSelected = 120;
+        public static int comboboxSelected = 120;
 
         public Form1()
         {
@@ -23,7 +23,11 @@ namespace JoshuaBrandonProject2
         {
             if (timeSelectComboBox.SelectedItem != null)
             {
-                comboboxSelected = Int32.Parse(timeSelectComboBox.SelectedItem.ToString());
+                string? selected = timeSelectComboBox.SelectedItem.ToString();
+                if (selected != null)
+                {
+                    comboboxSelected = Int32.Parse(selected);
+                }
             }
             
         }
