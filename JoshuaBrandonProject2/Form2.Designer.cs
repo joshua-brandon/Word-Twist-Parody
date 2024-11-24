@@ -38,6 +38,7 @@
             enterButton = new Button();
             label1 = new Label();
             messageLabel = new Label();
+            timeRemainingLabel = new Label();
             SuspendLayout();
             // 
             // button1
@@ -137,11 +138,20 @@
             messageLabel.TabIndex = 9;
             messageLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
+            // timeRemainingLabel
+            // 
+            timeRemainingLabel.AutoSize = true;
+            timeRemainingLabel.Location = new Point(50, 32);
+            timeRemainingLabel.Name = "timeRemainingLabel";
+            timeRemainingLabel.Size = new Size(0, 20);
+            timeRemainingLabel.TabIndex = 10;
+            // 
             // Form2
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1175, 607);
+            Controls.Add(timeRemainingLabel);
             Controls.Add(messageLabel);
             Controls.Add(label1);
             Controls.Add(enterButton);
@@ -170,5 +180,6 @@
         private Button enterButton;
         private Label label1;
         private Label messageLabel;
+        private Label timeRemainingLabel;
     }
 }
