@@ -8,10 +8,11 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace JoshuaBrandonProject2
 {
-    public partial class Form2 : Form
+    public partial class Game : Form
     {
         public List<char> wordGuess = new();
         public List<string> guessedWords = new();
+        public List<Highscore.Highscore> highscoreList = new();
         public static List<Guesses.ValidGuesses> AllValidGuessesList = new List<ValidGuesses>();
         public List<Guesses.InvalidGuesses> AllInvalidGuessesList = new List<InvalidGuesses>();
         public static List<Guesses.Guesses> AllGuessesList = new List<Guesses.Guesses>();
@@ -24,7 +25,7 @@ namespace JoshuaBrandonProject2
         private readonly Timer AppTimer;
         private int CurrentTime;
         private static Random rng = new Random();
-        public Form2()
+        public Game()
         {
             InitializeComponent();
             randomLetters.draw();
@@ -35,7 +36,7 @@ namespace JoshuaBrandonProject2
             button5.Text = randomLetters.Drawn[4].ToString();
             button6.Text = randomLetters.Drawn[5].ToString();
             button7.Text = randomLetters.Drawn[6].ToString();
-            CurrentTime = (int)Form1.comboboxSelected;
+            CurrentTime = (int)Home.comboboxSelected;
             timeRemainingLabel.Text = CurrentTime.ToString();
             pointTotal = 0;
             totalPointsLabel.Text = "Total Points: " + pointTotal;
@@ -61,8 +62,24 @@ namespace JoshuaBrandonProject2
                 button7.Enabled = false;
                 Round round = new Round(RoundList.Count + 1, AllGuessesList);
                 RoundList.Add(round);
-                Form3 f3 = new Form3();
+                Score f3 = new Score();
                 f3.ShowDialog();
+                var filePath =
+                    @"C:\Users\joshu\Downloads\JoshuaBrandonProject2\JoshuaBrandonProject2\Data\highscore.json";
+                StreamReader r = new StreamReader(filePath);
+                string json = r.ReadToEnd();
+                highscoreList = JsonSerializer.Deserialize<List<Highscore.Highscore>>(json)?? new List<Highscore.Highscore>();
+                Highscore.Highscore highscore = new Highscore.Highscore(Home.name, Home.comboboxSelected, pointTotal);
+                if (highscore != null)
+                {
+                    highscoreList.Add(highscore);
+                }
+                
+                
+                r.Close();
+                string jsonData = JsonSerializer.Serialize(highscoreList);
+                File.WriteAllText(filePath,jsonData);
+                
                 AllGuessesList.Clear();
                 AllInvalidGuessesList.Clear();
                 AllValidGuessesList.Clear();
@@ -76,6 +93,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[0];
             label1.Text = lettersChosen;
             button1.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -84,6 +102,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[1];
             label1.Text = lettersChosen;
             button2.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -92,6 +111,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[2];
             label1.Text = lettersChosen;
             button3.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -100,6 +120,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[3];
             label1.Text = lettersChosen;
             button4.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -108,6 +129,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[4];
             label1.Text = lettersChosen;
             button5.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -116,6 +138,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[5];
             label1.Text = lettersChosen;
             button6.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -124,6 +147,7 @@ namespace JoshuaBrandonProject2
             lettersChosen = lettersChosen + randomLetters.Drawn[6];
             label1.Text = lettersChosen;
             button7.Enabled = false;
+            twistButton.Enabled = false;
         }
 
         private void enterButton_Click(object sender, EventArgs e)
@@ -150,6 +174,7 @@ namespace JoshuaBrandonProject2
                 button5.Enabled = true;
                 button6.Enabled = true;
                 button7.Enabled = true;
+                twistButton.Enabled = true;
                 InvalidGuesses invalidGuess = new Guesses.InvalidGuesses(submitedGuess, CurrentTime, "Guess wasn't long enough");
                 AllInvalidGuessesList.Add(invalidGuess);
                 AllGuessesList.Add(invalidGuess);
@@ -198,6 +223,7 @@ namespace JoshuaBrandonProject2
                                 button5.Enabled = true;
                                 button6.Enabled = true;
                                 button7.Enabled = true;
+                                twistButton.Enabled = true;
                                 pointTotal = pointTotal + points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
@@ -221,6 +247,7 @@ namespace JoshuaBrandonProject2
                                 button5.Enabled = true;
                                 button6.Enabled = true;
                                 button7.Enabled = true;
+                                twistButton.Enabled = true;
                                 pointTotal += points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
@@ -244,6 +271,7 @@ namespace JoshuaBrandonProject2
                                 button5.Enabled = true;
                                 button6.Enabled = true;
                                 button7.Enabled = true;
+                                twistButton.Enabled = true;
                                 pointTotal = pointTotal + points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
@@ -267,6 +295,7 @@ namespace JoshuaBrandonProject2
                                 button5.Enabled = true;
                                 button6.Enabled = true;
                                 button7.Enabled = true;
+                                twistButton.Enabled = true;
                                 pointTotal += points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
@@ -290,6 +319,7 @@ namespace JoshuaBrandonProject2
                                 button5.Enabled = true;
                                 button6.Enabled = true;
                                 button7.Enabled = true;
+                                twistButton.Enabled = true;
                                 pointTotal += points;
                                 totalPointsLabel.Text = "Total Points: " + pointTotal.ToString();
                                 guessedWords.Add(submitedGuess);
@@ -312,6 +342,7 @@ namespace JoshuaBrandonProject2
                             button5.Enabled = true;
                             button6.Enabled = true;
                             button7.Enabled = true;
+                            twistButton.Enabled = true;
                             InvalidGuesses invalidGuess = new Guesses.InvalidGuesses(submitedGuess, CurrentTime, "Word was already submitted");
                             AllInvalidGuessesList.Add(invalidGuess);
                             AllGuessesList.Add(invalidGuess);
@@ -333,6 +364,7 @@ namespace JoshuaBrandonProject2
                         button5.Enabled = true;
                         button6.Enabled = true;
                         button7.Enabled = true;
+                        twistButton.Enabled = true;
                         InvalidGuesses invalidGuess = new Guesses.InvalidGuesses(submitedGuess, CurrentTime, "Word wasn't in dictionary");
                         AllInvalidGuessesList.Add(invalidGuess);
                         AllGuessesList.Add(invalidGuess);

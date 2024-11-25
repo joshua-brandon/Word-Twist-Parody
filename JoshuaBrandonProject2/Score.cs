@@ -10,22 +10,22 @@ using System.Windows.Forms;
 
 namespace JoshuaBrandonProject2
 {
-    public partial class Form3 : Form
+    public partial class Score : Form
     {
-        public Form3()
+        public Score()
         {
             InitializeComponent();
-            foreach (var guess in Form2.AllValidGuessesList)
+            foreach (var guess in Game.AllValidGuessesList)
             {
                 scorringWordsListBox.Items.Add(guess.ToString());
             }
-            totalPointsLabel.Text = "Total Points: " + Form2.pointTotal;
+            totalPointsLabel.Text = "Total Points: " + Game.pointTotal;
         }
 
         private void newGameButton_Click(object sender, EventArgs e)
         {
             Close();
-            Form2 f2 = new Form2();
+            Game f2 = new Game();
             f2.ShowDialog();
 
 

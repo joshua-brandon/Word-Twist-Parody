@@ -1,6 +1,6 @@
 ﻿namespace JoshuaBrandonProject2
 {
-    partial class Form2
+    partial class Game
     {
         /// <summary>
         /// Required designer variable.
