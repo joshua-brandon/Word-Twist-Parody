@@ -193,6 +193,14 @@ namespace JoshuaBrandonProject2
                     }
                 }
             }
+            else
+            {
+                nameEnterCheck.Text = "Error Occured, Starting a defualt game";
+                name = "Bob";
+                comboboxSelected = 120;
+                Game newGame = new Game();
+                newGame.ShowDialog();
+            }
         }
     }
 }
