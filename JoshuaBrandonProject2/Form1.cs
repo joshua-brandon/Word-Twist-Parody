@@ -29,7 +29,12 @@ namespace JoshuaBrandonProject2
                     comboboxSelected = Int32.Parse(selected);
                 }
             }
-            
+
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

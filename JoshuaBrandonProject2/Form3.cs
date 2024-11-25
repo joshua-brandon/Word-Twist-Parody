@@ -21,5 +21,19 @@ namespace JoshuaBrandonProject2
             }
             totalPointsLabel.Text = "Total Points: " + Form2.pointTotal;
         }
+
+        private void newGameButton_Click(object sender, EventArgs e)
+        {
+            Close();
+            Form2 f2 = new Form2();
+            f2.ShowDialog();
+
+
+        }
+
+        private void homeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

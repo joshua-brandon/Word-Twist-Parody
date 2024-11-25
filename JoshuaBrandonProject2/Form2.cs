@@ -66,6 +66,7 @@ namespace JoshuaBrandonProject2
                 AllGuessesList.Clear();
                 AllInvalidGuessesList.Clear();
                 AllValidGuessesList.Clear();
+                Close();
             }
         }
 

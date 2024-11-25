@@ -31,6 +31,7 @@
             playGameButton = new Button();
             timeSelectComboBox = new ComboBox();
             nameTextBox = new TextBox();
+            exitButton = new Button();
             SuspendLayout();
             // 
             // playGameButton
@@ -62,11 +63,22 @@
             nameTextBox.TabIndex = 2;
             nameTextBox.Text = "Enter Name";
             // 
+            // exitButton
+            // 
+            exitButton.Location = new Point(295, 351);
+            exitButton.Name = "exitButton";
+            exitButton.Size = new Size(181, 53);
+            exitButton.TabIndex = 3;
+            exitButton.Text = "Exit";
+            exitButton.UseVisualStyleBackColor = true;
+            exitButton.Click += exitButton_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(exitButton);
             Controls.Add(nameTextBox);
             Controls.Add(timeSelectComboBox);
             Controls.Add(playGameButton);
@@ -81,5 +93,6 @@
         private Button playGameButton;
         private ComboBox timeSelectComboBox;
         private TextBox nameTextBox;
+        private Button exitButton;
     }
 }
