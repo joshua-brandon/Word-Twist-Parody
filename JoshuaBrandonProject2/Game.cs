@@ -16,7 +16,7 @@ namespace JoshuaBrandonProject2
         public static List<Guesses.ValidGuesses> AllValidGuessesList = new List<ValidGuesses>();
         public List<Guesses.InvalidGuesses> AllInvalidGuessesList = new List<InvalidGuesses>();
         public static List<Guesses.Guesses> AllGuessesList = new List<Guesses.Guesses>();
-        public static List<Round> RoundList = new List<Round>();
+        
         public RandomLetters randomLetters = new RandomLetters();
         public string submitedGuess = "";
         public string lettersChosen = "";
@@ -60,8 +60,8 @@ namespace JoshuaBrandonProject2
                 button5.Enabled = false;
                 button6.Enabled = false;
                 button7.Enabled = false;
-                Round round = new Round(RoundList.Count + 1, AllGuessesList);
-                RoundList.Add(round);
+                Round round = new Round(Home.RoundList.Count + 1, Home.name, Home.comboboxSelected, AllGuessesList);
+                Home.RoundList.Add(round);
                 Score f3 = new Score();
                 f3.ShowDialog();
                 var filePath =
@@ -74,12 +74,9 @@ namespace JoshuaBrandonProject2
                 {
                     highscoreList.Add(highscore);
                 }
-                
-                
                 r.Close();
                 string jsonData = JsonSerializer.Serialize(highscoreList);
                 File.WriteAllText(filePath,jsonData);
-                
                 AllGuessesList.Clear();
                 AllInvalidGuessesList.Clear();
                 AllValidGuessesList.Clear();
