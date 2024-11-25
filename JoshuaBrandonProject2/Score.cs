@@ -10,8 +10,14 @@ using System.Windows.Forms;
 
 namespace JoshuaBrandonProject2
 {
+    /// <summary>
+    /// The Score Form
+    /// </summary>
     public partial class Score : Form
     {
+        /// <summary>
+        /// The Default Constructor
+        /// </summary>
         public Score()
         {
             InitializeComponent();
@@ -21,7 +27,11 @@ namespace JoshuaBrandonProject2
             }
             totalPointsLabel.Text = "Total Points: " + Game.pointTotal;
         }
-
+        /// <summary>
+        /// The NewGame Button action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newGameButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -30,7 +40,11 @@ namespace JoshuaBrandonProject2
 
 
         }
-
+        /// <summary>
+        /// The Home button action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void homeButton_Click(object sender, EventArgs e)
         {
             Close();

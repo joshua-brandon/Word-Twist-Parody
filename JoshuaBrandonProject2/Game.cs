@@ -8,23 +8,70 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace JoshuaBrandonProject2
 {
+    /// <summary>
+    /// The Game Form
+    /// </summary>
     public partial class Game : Form
     {
+        /// <summary>
+        /// The wordGuess List
+        /// </summary>
         public List<char> wordGuess = new();
+        /// <summary>
+        /// The guessedWords List
+        /// </summary>
         public List<string> guessedWords = new();
+        /// <summary>
+        /// The highscoreList List
+        /// </summary>
         public List<Highscore.Highscore> highscoreList = new();
+        /// <summary>
+        /// The AllValidGuessesList List
+        /// </summary>
         public static List<Guesses.ValidGuesses> AllValidGuessesList = new List<ValidGuesses>();
+        /// <summary>
+        /// The AllInvalidGuessesList List
+        /// </summary>
         public List<Guesses.InvalidGuesses> AllInvalidGuessesList = new List<InvalidGuesses>();
+        /// <summary>
+        /// The AllGuessesList List
+        /// </summary>
         public static List<Guesses.Guesses> AllGuessesList = new List<Guesses.Guesses>();
-        
+        /// <summary>
+        /// The RandomLetters
+        /// </summary>
         public RandomLetters randomLetters = new RandomLetters();
+        /// <summary>
+        /// The submitedGuess string
+        /// </summary>
         public string submitedGuess = "";
+        /// <summary>
+        /// the lettersChosen string
+        /// </summary>
         public string lettersChosen = "";
+        /// <summary>
+        /// the points int
+        /// </summary>
         public int points = 0;
+        /// <summary>
+        /// the pointTotal int
+        /// </summary>
         public static int pointTotal = 0;
+        /// <summary>
+        /// the Timer
+        /// </summary>
         private readonly Timer AppTimer;
+        /// <summary>
+        /// The currentTime int
+        /// </summary>
         private int CurrentTime;
+        /// <summary>
+        /// the Random rng
+        /// </summary>
         private static Random rng = new Random();
+        /// <summary>
+        /// the default constructor
+        /// </summary>
         public Game()
         {
             InitializeComponent();
@@ -45,6 +92,11 @@ namespace JoshuaBrandonProject2
             AppTimer.Tick += TimerOnTick;
             AppTimer.Start();
         }
+        /// <summary>
+        /// The Timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void TimerOnTick(object? sender, EventArgs e)
         {
             CurrentTime--;
@@ -83,7 +135,11 @@ namespace JoshuaBrandonProject2
                 Close();
             }
         }
-
+        /// <summary>
+        /// The button1 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[0]);
@@ -92,7 +148,11 @@ namespace JoshuaBrandonProject2
             button1.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// The button2 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button2_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[1]);
@@ -101,7 +161,11 @@ namespace JoshuaBrandonProject2
             button2.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// the button3 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button3_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[2]);
@@ -110,7 +174,11 @@ namespace JoshuaBrandonProject2
             button3.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// the button4 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button4_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[3]);
@@ -119,7 +187,11 @@ namespace JoshuaBrandonProject2
             button4.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// the button5 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button5_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[4]);
@@ -128,7 +200,11 @@ namespace JoshuaBrandonProject2
             button5.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// the button6 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button6_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[5]);
@@ -137,7 +213,11 @@ namespace JoshuaBrandonProject2
             button6.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// the button7 click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button7_Click(object sender, EventArgs e)
         {
             wordGuess.Add(randomLetters.Drawn[6]);
@@ -146,7 +226,11 @@ namespace JoshuaBrandonProject2
             button7.Enabled = false;
             twistButton.Enabled = false;
         }
-
+        /// <summary>
+        /// the enterButton click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void enterButton_Click(object sender, EventArgs e)
         {
             submitedGuess = "";
@@ -377,7 +461,11 @@ namespace JoshuaBrandonProject2
 
 
         }
-
+        /// <summary>
+        /// the twistButton click
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void twistButton_Click(object sender, EventArgs e)
         {
             var shuffledcards = randomLetters.Drawn.OrderBy(_ => rng.Next()).ToList();

@@ -6,11 +6,23 @@ using System.Threading.Tasks;
 
 namespace JoshuaBrandonProject2.Random_Letters
 {
+    /// <summary>
+    /// The RandomLetters class
+    /// </summary>
     public class RandomLetters
     {
+        /// <summary>
+        /// the bag list
+        /// </summary>
         public List<char> Bag = new();
+        /// <summary>
+        /// the drawn list
+        /// </summary>
         public List<char> Drawn = new();
 
+        /// <summary>
+        /// The random letters default constructor
+        /// </summary>
         public RandomLetters()
         {
             for (int i = 0; i < 11; i++)
@@ -72,7 +84,9 @@ namespace JoshuaBrandonProject2.Random_Letters
             Bag.Add('x');
             Bag.Add('z');
         }
-
+        /// <summary>
+        /// The draw command
+        /// </summary>
         public void draw()
         {
             Drawn.Clear();

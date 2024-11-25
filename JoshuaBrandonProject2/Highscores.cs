@@ -11,9 +11,18 @@ using System.Windows.Forms;
 
 namespace JoshuaBrandonProject2
 {
+    /// <summary>
+    /// the Highscore Form
+    /// </summary>
     public partial class Highscores : Form
     {
+        /// <summary>
+        /// The Highscore list
+        /// </summary>
         private List<Highscore.Highscore> highscoreList = new();
+        /// <summary>
+        /// The default Constructor
+        /// </summary>
         public Highscores()
         {
             InitializeComponent();
@@ -35,7 +44,11 @@ namespace JoshuaBrandonProject2
             }
             r.Close();
         }
-
+        /// <summary>
+        /// the scoreSort button Click action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void scoreSortButton_Click(object sender, EventArgs e)
         {
             highScoreListBox.Items.Clear();
@@ -49,12 +62,20 @@ namespace JoshuaBrandonProject2
             }
 
         }
-
+        /// <summary>
+        /// The exit button action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        /// <summary>
+        /// The time and score sort button action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timeAndScoreSortButton_Click(object sender, EventArgs e)
         {
             highScoreListBox.Items.Clear();

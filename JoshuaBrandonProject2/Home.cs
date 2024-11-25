@@ -7,18 +7,38 @@ using System.Windows.Forms;
 
 namespace JoshuaBrandonProject2
 {
+    /// <summary>
+    /// The Home Form
+    /// </summary>
     public partial class Home : Form
     {
+        /// <summary>
+        /// The comboboxSelected int
+        /// </summary>
         public static int comboboxSelected = 120;
+        /// <summary>
+        /// The static string name
+        /// </summary>
         public static string name = "";
+        /// <summary>
+        /// The static List RoundList
+        /// </summary>
         public static List<Round> RoundList = new List<Round>();
 
+        /// <summary>
+        /// The Default Constructor
+        /// </summary>
         public Home()
         {
             InitializeComponent();
 
         }
 
+        /// <summary>
+        /// The playGameButton Click Action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void playGameButton_Click(object sender, EventArgs e)
         {
             if (nameTextBox.Text == null || nameTextBox.Text == "")
@@ -34,7 +54,11 @@ namespace JoshuaBrandonProject2
 
 
         }
-
+        /// <summary>
+        /// The timeSelectComboBox select action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timeSelectComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (timeSelectComboBox.SelectedItem != null)
@@ -47,12 +71,20 @@ namespace JoshuaBrandonProject2
             }
 
         }
-
+        /// <summary>
+        /// The exitButton Click action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
-
+        /// <summary>
+        /// The highScoreButton click action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void highScoreButton_Click(object sender, EventArgs e)
         {
             var filePath =
@@ -75,7 +107,11 @@ namespace JoshuaBrandonProject2
             r.Close();
 
         }
-
+        /// <summary>
+        /// the resetHighScoreButton click action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void resetHighScoreButton_Click(object sender, EventArgs e)
         {
 
@@ -92,7 +128,11 @@ namespace JoshuaBrandonProject2
 
 
         }
-
+        /// <summary>
+        /// the exportButton click action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exportButton_Click(object sender, EventArgs e)
         {
             string path = @"C:\Users\joshu\Downloads\JoshuaBrandonProject2\JoshuaBrandonProject2\Data\Export.json";
@@ -112,7 +152,11 @@ namespace JoshuaBrandonProject2
 
             }
         }
-
+        /// <summary>
+        /// the continue button click action
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void continueButton_Click(object sender, EventArgs e)
         {
             string fileName;
