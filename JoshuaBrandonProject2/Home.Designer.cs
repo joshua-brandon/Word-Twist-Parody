@@ -39,6 +39,8 @@
             resetHighScoreButton = new Button();
             exportButton = new Button();
             roundCheck = new Label();
+            continueButton = new Button();
+            openFileDialog1 = new OpenFileDialog();
             SuspendLayout();
             // 
             // playGameButton
@@ -143,11 +145,26 @@
             roundCheck.Size = new Size(0, 20);
             roundCheck.TabIndex = 10;
             // 
+            // continueButton
+            // 
+            continueButton.Location = new Point(287, 330);
+            continueButton.Name = "continueButton";
+            continueButton.Size = new Size(220, 68);
+            continueButton.TabIndex = 11;
+            continueButton.Text = "Continue";
+            continueButton.UseVisualStyleBackColor = true;
+            continueButton.Click += continueButton_Click;
+            // 
+            // openFileDialog1
+            // 
+            openFileDialog1.FileName = "openFileDialog1";
+            // 
             // Home
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(continueButton);
             Controls.Add(roundCheck);
             Controls.Add(exportButton);
             Controls.Add(resetHighScoreButton);
@@ -178,5 +195,7 @@
         private Button resetHighScoreButton;
         private Button exportButton;
         private Label roundCheck;
+        private Button continueButton;
+        private OpenFileDialog openFileDialog1;
     }
 }

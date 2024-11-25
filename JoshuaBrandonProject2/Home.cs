@@ -3,6 +3,7 @@ using JoshuaBrandonProject2.Random_Letters;
 using Microsoft.VisualBasic.ApplicationServices;
 using System.Text;
 using System.Text.Json;
+using System.Windows.Forms;
 
 namespace JoshuaBrandonProject2
 {
@@ -58,7 +59,8 @@ namespace JoshuaBrandonProject2
                 @"C:\Users\joshu\Downloads\JoshuaBrandonProject2\JoshuaBrandonProject2\Data\highscore.json";
             StreamReader r = new StreamReader(filePath);
             string json = r.ReadToEnd();
-            List<Highscore.Highscore>? highscoreList = JsonSerializer.Deserialize<List<Highscore.Highscore>>(json) ?? new List<Highscore.Highscore>();
+            List<Highscore.Highscore>? highscoreList = JsonSerializer.Deserialize<List<Highscore.Highscore>>(json) ??
+                                                       new List<Highscore.Highscore>();
             if (highscoreList.Count == 0)
             {
                 highscoreCheckLabel.Text = "No Highscores, Play A Round First.";
@@ -69,24 +71,26 @@ namespace JoshuaBrandonProject2
                 f4.ShowDialog();
 
             }
+
             r.Close();
 
         }
 
         private void resetHighScoreButton_Click(object sender, EventArgs e)
         {
-            
+
             var filePath =
-                    @"C:\Users\joshu\Downloads\JoshuaBrandonProject2\JoshuaBrandonProject2\Data\highscore.json";
+                @"C:\Users\joshu\Downloads\JoshuaBrandonProject2\JoshuaBrandonProject2\Data\highscore.json";
             StreamReader r = new StreamReader(filePath);
             string json = r.ReadToEnd();
             r.Close();
-            List <Highscore.Highscore> highscoreList = JsonSerializer.Deserialize<List<Highscore.Highscore>>(json) ?? new List<Highscore.Highscore>();
+            List<Highscore.Highscore> highscoreList = JsonSerializer.Deserialize<List<Highscore.Highscore>>(json) ??
+                                                      new List<Highscore.Highscore>();
             highscoreList.Clear();
             string jsonData = JsonSerializer.Serialize(highscoreList);
             File.WriteAllText(filePath, jsonData);
 
-            
+
         }
 
         private void exportButton_Click(object sender, EventArgs e)
@@ -100,11 +104,50 @@ namespace JoshuaBrandonProject2
             {
                 string jsonString = JsonSerializer.Serialize(RoundList);
                 if (!File.Exists(path))
-                { 
+                {
                     File.WriteAllText(path, jsonString);
-                } 
+                }
+
                 File.WriteAllText(path, jsonString);
-                
+
+            }
+        }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            string fileName;
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                InitialDirectory = @"D:\",
+                Title = "Select a File",
+
+                CheckFileExists = true,
+                CheckPathExists = true,
+
+                DefaultExt = "json",
+                Filter = "json files (*.json)|*.json",
+                FilterIndex = 2,
+                RestoreDirectory = true,
+
+                ReadOnlyChecked = true,
+                ShowReadOnly = true
+            };
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                fileName = openFileDialog1.FileName;
+
+                using (StreamReader r = new StreamReader(fileName))
+                {
+                    string? json = r.ReadToEnd();
+                    List<Round>? rounds = JsonSerializer.Deserialize<List<Round>>(json);
+                    if (rounds != null && rounds.Count != 0)
+                    {
+                        name = rounds[rounds.Count - 1].Name;
+                        comboboxSelected = rounds[rounds.Count - 1].Time;
+                        Game newGame = new Game();
+                        newGame.ShowDialog();
+                    }
+                }
             }
         }
     }
